@@ -6,14 +6,12 @@
 </head>
 <body>
   <script>
-
+    
     function getComputerChoice(){
         var options = ['Rock', 'Paper', 'Scissors'];
         return options[Math.floor(Math.random() * options.length)];
     }
     
-    //console.log(getComputerChoice());
-
     function singleRound(playerSelection,  computerSelection){
         var p1 = playerSelection.toLowerCase();
         var p2 = computerSelection.toLowerCase();
@@ -40,12 +38,6 @@
             return "Please enter rock, paper, or scissors.";
         }
     }
-
-    //const player1 = 'rock';
-    //const player2 = getComputerChoice();
-    //console.log(player1);
-    //console.log(player2);
-    //console.log(singleRound(player1, player2));
 
     function game(){
         p1Counter = 0;
