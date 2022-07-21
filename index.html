@@ -5,13 +5,17 @@
   <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <button id = "btn1">Rock</button>
+    <button id = "btn2">Paper</button>
+    <button id = "btn3">Scissors</button>
+
   <script>
-    
+
     function getComputerChoice(){
         var options = ['Rock', 'Paper', 'Scissors'];
         return options[Math.floor(Math.random() * options.length)];
     }
-    
+
     function singleRound(playerSelection,  computerSelection){
         var p1 = playerSelection.toLowerCase();
         var p2 = computerSelection.toLowerCase();
@@ -39,6 +43,99 @@
         }
     }
 
+    const para = document.createElement("p");
+    const text = document.createTextNode("");
+    para.appendChild(text); 
+    document.body.appendChild(para);
+
+    var p1 = 0;
+    var p2 = 0;
+    var gameCount = 0;
+
+    const div = document.createElement("div");
+    div.id = "score";
+    const paraScore = document.createElement("p");
+    const score = document.createTextNode(p1 + " - " + p2);
+    paraScore.appendChild(score);
+    div.appendChild(paraScore);
+
+    const paraWinner = document.createElement("p");
+    const winner = document.createTextNode("");
+    paraWinner.appendChild(winner);
+    div.appendChild(paraWinner);
+
+    document.body.appendChild(div);
+
+    const rock = document.getElementById("btn1");
+    const paper = document.getElementById("btn2");
+    const scissors = document.getElementById("btn3");
+
+    function announceWinner(){
+        if (p1 > p2){
+            winner.nodeValue = "You Win!";
+        }else{
+            winner.nodeValue = "You Lose!";
+        }
+        gameCount = 0;
+        p1 = 0;
+        p2 = 0;
+    }
+
+    rock.addEventListener('click', function(){
+        winner.nodeValue = "";
+        gameCount += 1;
+        console.log(gameCount);
+        let res = singleRound('rock', getComputerChoice());
+        para.innerText = res;
+        if (res == "You Win! Rock beats Scissors"){
+            p1 += 1
+        }
+        if (res == "You Lose! Paper beats Rock"){
+            p2 += 1;
+        }
+        score.nodeValue = (p1 + " - " + p2);
+        if (gameCount == 5){
+            announceWinner();
+        }
+    });
+    
+    paper.addEventListener('click', function(){
+        winner.nodeValue = "";
+        gameCount += 1;
+        console.log(gameCount);
+        let res = singleRound('paper', getComputerChoice());
+        para.innerText = res;
+        if (res == "You Win! Paper beats Rock"){
+            p1 += 1
+        }
+        if (res == "You Lose! Scissors beats Paper"){
+            p2 += 1;
+        }
+        score.nodeValue = (p1 + " - " + p2);
+        if (gameCount == 5){
+            announceWinner();
+        }
+    });
+
+    scissors.addEventListener('click', function(){
+        winner.nodeValue = "";
+        gameCount += 1;
+        console.log(gameCount);
+        let res = singleRound('scissors', getComputerChoice());
+        para.innerText = res;
+        if (res == "You Win! Scissors beats Paper"){
+            p1 += 1
+        }
+        if (res == "You Lose! Rock beats Scissors"){
+            p2 += 1;
+        }
+        score.nodeValue = (p1 + " - " + p2);
+        if (gameCount == 5){
+            announceWinner();
+        }
+    });
+
+    /*
     function game(){
         p1Counter = 0;
         p2Counter = 0;
@@ -66,7 +163,7 @@
     }
 
     console.log(game());
-
+    */
   </script>
 </body>
 </html>
